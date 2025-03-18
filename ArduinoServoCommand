@@ -1,0 +1,34 @@
+#include <Servo.h>
+
+Servo myservo;  // create Servo object to control a servo
+// twelve Servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+#define SWpin 8
+int count = 0; 
+int SWpinS;
+
+void setup() {
+  myservo.attach(11);  // attaches the servo on pin 9 to the Servo object
+  Serial.begin(9600);
+  pinMode(SWpin, INPUT_PULLUP);
+}
+
+void loop() {
+SWpinS = digitalRead(SWpin);
+if (count = 0){
+    if (SWpinS == HIGH){ 
+    myservo.write(180);
+    int count = 1;                      
+    }
+  }
+  else{
+    if (count = 1){
+      if (SWpinS == HIGH){ 
+      myservo.write(0);
+      int count = 0;                       
+      }
+    }
+  }
+  Serial.println(count);
+}

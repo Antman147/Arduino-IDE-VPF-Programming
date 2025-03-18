@@ -1,0 +1,40 @@
+#include<Servo.h>
+Servo myservo;
+#define STpin 13
+#define Rpin 12
+#define Lpin 8
+#define Spin 11
+
+int STS, RS, LS;
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(STpin, INPUT_PULLUP);
+  pinMode(Rpin, INPUT_PULLUP);
+  pinMode(Lpin, INPUT_PULLUP);
+  myservo.attach(Spin);
+}
+
+void loop(){
+STS = digitalRead(STpin);
+RS =digitalRead(Rpin);
+LS = digitalRead(Lpin);
+if (STS == LOW){
+    myservo.write(90);
+  }else if (RS == LOW){
+    myservo.write(180);
+  }else if (LS == LOW){
+    myservo.write(-180);
+  }
+if (STS == LOW){
+  Serial.print("STOP ACTIVE");
+}else{
+  if (RS == LOW){
+    Serial.print("Right Spin Active");
+  }else{
+    if (LS == LOW){
+      Serial.print("Left Spin Active");
+    }
+  }
+}
+}
